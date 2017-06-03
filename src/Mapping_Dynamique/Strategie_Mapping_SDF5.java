@@ -13,6 +13,7 @@ public class Strategie_Mapping_SDF5 {
         int pat = 1;
         pos[0] = -1;
         pos[1] = -1;
+        //System.out.println(Create_NOC.getNOC()[StaticParametre.listClusters[id_cluster].xCentre][StaticParametre.listClusters[id_cluster].yCentre].getFree() && test(ParametreSdf.listApplicationSdf.get(idapp).getListActor().get(id_actor), Create_NOC.getNOC()[StaticParametre.listClusters[id_cluster].xCentre][StaticParametre.listClusters[id_cluster].yCentre]));
         if (Create_NOC.getNOC()[StaticParametre.listClusters[id_cluster].xCentre][StaticParametre.listClusters[id_cluster].yCentre].getFree() && test(ParametreSdf.listApplicationSdf.get(idapp).getListActor().get(id_actor), Create_NOC.getNOC()[StaticParametre.listClusters[id_cluster].xCentre][StaticParametre.listClusters[id_cluster].yCentre])) {
             pos[0] = StaticParametre.listClusters[id_cluster].xCentre;
             pos[1] = StaticParametre.listClusters[id_cluster].yCentre;
@@ -121,7 +122,7 @@ public class Strategie_Mapping_SDF5 {
                 liste_pos.add(new Integer[] { xsrc, ysrc });
                 while (pat <= ((StaticParametre.LEGNHT_NOC - 1) * 2) && (pos[0] < 0 && pos[1] < 0)) {
                     liste_pos = liste_pos_manhatan(liste_pos, pat);
-                    System.out.println("pat " + pat + " size " + liste_pos.size());
+                    //System.out.println("pat " + pat + " size " + liste_pos.size());
                     int charge_optimale = 0;
                     for (int i = 0; i < liste_pos.size(); i++) {
                         ParametreSdf.nb_pe_consulter += 1;
@@ -241,6 +242,5 @@ public class Strategie_Mapping_SDF5 {
             }
         }
         return load;
-    }  
-    
+    }
 }

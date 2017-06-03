@@ -42,7 +42,7 @@ public class BN_MANHATAN_Circ {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-public   void start_MANHATAN(Tache tachePlacer,int x,int y)  
+public   void start_MANHATAN(Tache tachePlacer,int x,int y) throws InterruptedException 
 {
 this.x=x;
 this.y=y;
@@ -139,7 +139,7 @@ lancer(tachePlacer,c,this.x,this.y);
  
 /////////////////////// 
  
-public void recherche_gauche(Tache tachePlacer,int x,int y) {
+public void recherche_gauche(Tache tachePlacer,int x,int y) throws InterruptedException{
 	
 	if(y>=0 && y<=7 && x>=0 && x<=7)
 	{
@@ -170,7 +170,7 @@ public void recherche_gauche(Tache tachePlacer,int x,int y) {
 
 /////////////////////////////////////	
 	
-public void recherche_bas(Tache tachePlacer,int x,int y) {
+public void recherche_bas(Tache tachePlacer,int x,int y) throws InterruptedException{
 	
 	
 	if(x<=7 && x>=0 && y>=0 && y<=7)
@@ -204,7 +204,7 @@ public void recherche_bas(Tache tachePlacer,int x,int y) {
 
 
 
-public void recherche_haut(Tache tachePlacer,int x,int y) 
+public void recherche_haut(Tache tachePlacer,int x,int y) throws InterruptedException
 {
 	
 	
@@ -242,7 +242,7 @@ public void recherche_haut(Tache tachePlacer,int x,int y)
 //////////////////////////////////
 
 
-public void recherche_droite(Tache tachePlacer,int x,int y) {
+public void recherche_droite(Tache tachePlacer,int x,int y) throws InterruptedException{
 	
 		
 	
@@ -268,7 +268,7 @@ public void recherche_droite(Tache tachePlacer,int x,int y) {
 
 
 ////////////////////////// verifier le proceseur haut_gauche
-public  void recherche_haut_gauche(Tache tachePlacer,int x,int y) {
+public  void recherche_haut_gauche(Tache tachePlacer,int x,int y) throws InterruptedException{
 	
 	if (y>=0 && x>=0 && y<=7 && x<=7)
 	{temps_recherche=temps_recherche+50;
@@ -300,7 +300,7 @@ public  void recherche_haut_gauche(Tache tachePlacer,int x,int y) {
 ///////////////////////////// rechercher le processeur haut_droite 
 
 
-public  void recherche_haut_droite(Tache tachePlacer,int x,int y) {
+public  void recherche_haut_droite(Tache tachePlacer,int x,int y) throws InterruptedException{
 	
 	
 	if (x>=0 && y<=7 && x<=7 && y>=0)
@@ -331,7 +331,7 @@ public  void recherche_haut_droite(Tache tachePlacer,int x,int y) {
 
 ////////////////////////////// rechercher le processeur bas_gauche 
 
-public  void recherche_bas_gauche(Tache tachePlacer,int x,int y) {
+public  void recherche_bas_gauche(Tache tachePlacer,int x,int y) throws InterruptedException{
 	
 	
 	if (x<=7 && y>=0 && x>=0 && y<=7)
@@ -366,7 +366,7 @@ public  void recherche_bas_gauche(Tache tachePlacer,int x,int y) {
 
 //////////////////////////////////// recherche processeur bas_droite 
 
-public  void recherche_bas_droite(Tache tachePlacer,int x,int y) {
+public  void recherche_bas_droite(Tache tachePlacer,int x,int y) throws InterruptedException{
 	
 	
 	
@@ -399,7 +399,7 @@ public  void recherche_bas_droite(Tache tachePlacer,int x,int y) {
 ///////////////////////////////////// 
 
 
-public  void lancer(Tache t,int K,int x,int y) 
+public  void lancer(Tache t,int K,int x,int y) throws InterruptedException
 {
 
 

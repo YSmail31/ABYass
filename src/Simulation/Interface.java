@@ -40,7 +40,7 @@ public class Interface extends javax.swing.JFrame {
         tableLien.setModel(liens);
         tableRes.setModel(resultat);
         tableScen.setModel(scenario);
-        liens.addLien(new String[]{"samplerate.xml","modem.xml","h263encoder.xml","h263encoder.xml","jpegusecaseModified.xml","mp3playback.xml"});
+        liens.addLien(new String[]{"samplerate.xml","modem.xml","h263encoder.xml","jpegusecaseModified.xml","mp3playback.xml"});
         scenario.addScenario(new String[]{"scene1.scn"});
         remplirTable();
     }
@@ -797,7 +797,7 @@ public class Interface extends javax.swing.JFrame {
 
         jPanel14.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 0, 102)));
 
-        tableau.setModel(new Modele());
+        tableau.setModel(new ModeleTableau());
         jScrollPane4.setViewportView(tableau);
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
@@ -1300,7 +1300,7 @@ public class Interface extends javax.swing.JFrame {
     static void exporter(String path)
     {
         
-        String sortie = "ResultatV2"+path.replace(".scn", ".xls");
+        String sortie = path.replace(".scn", ".xls");
         int nbapp = ParametreSdf.NB_APP;
         ArrayList<String[]> mat = ModeleResultat.mat;
 

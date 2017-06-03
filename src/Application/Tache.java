@@ -4,15 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import Simulation.StaticParametre;
 
-
-/**
- * 
- * Cette classe donne la repr�sentation d'une t�che avec ces diff�rentes caract�ristiques
- *
- */
-
-
-
 public class Tache {
 	
 	/**

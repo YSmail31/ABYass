@@ -8,28 +8,30 @@ import Routage_Algorithme.Paquet;
 public class LienNoc {
 
     private int idSource;
-
+    private static int idCanal = 0;
     private int idDestination;
-
     public ArrayList<Integer> event = new ArrayList<Integer>();
-
     private int idLien;
-
     private LinkedList<Integer> File;
-
     public LinkedList<Paquet> liste_paquets;
-
     public int charge;
 
-    public LienNoc(int idSource, int idDestination, int idLien) {
+    public LienNoc(int idSource, int idDestination) {
+        StaticParametre.getMatriceChannel()[idSource][idDestination] = idCanal;
+        StaticParametre.getMatriceChannel()[idDestination][idSource] = idCanal;
         this.idSource = idSource;
         this.idDestination = idDestination;
-        this.idLien = idLien;
+        this.idLien = idCanal;
         this.File = new LinkedList<Integer>();
         this.liste_paquets = new LinkedList<Paquet>();
         charge = 0;
+        idCanal++;
     }
 
+    public static int getIdCanal() {
+        return idCanal;
+    }
+    
     public void setSource(int idSource) {
         this.idSource = idSource;
     }
@@ -54,6 +56,10 @@ public class LienNoc {
         return idLien;
     }
 
+    public static void initiialise()
+    {
+        idCanal = 0;
+    }
     public int get_size_file(int source, int destination) {
         int somme = 0;
         for (int i = 1; i <= 112; i++) {

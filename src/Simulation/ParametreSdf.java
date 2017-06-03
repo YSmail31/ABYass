@@ -1,8 +1,16 @@
 package Simulation;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.TreeSet;
+import Routage_Algorithme.Paquet;
+import Application.Application;
 import Application.ApplicationSdf;
+import Application.Tache;
+import Architecture.Cluster;
+import Architecture.ProcessorElement;
 
 public class ParametreSdf {
 
@@ -18,7 +26,7 @@ public class ParametreSdf {
 
     public static int Debit = 250;
 
-    public static int NB_APP = 5;
+    public static int NB_APP = 20;
 
     public static int Default_token_size = 10000;
 

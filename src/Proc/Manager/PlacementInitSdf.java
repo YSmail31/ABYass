@@ -1,7 +1,5 @@
 package Proc.Manager;
 
-import java.util.Collections;
-import javax.swing.JOptionPane;
 import Simulation.ParametreSdf;
 import Simulation.StaticParametre;
 import Architecture.*;
@@ -15,9 +13,10 @@ import Routage_Algorithme.*;
 
 public class PlacementInitSdf {
 
-    public static void Start()  {
+    public static void Start() throws InterruptedException {
         boolean a;
         int b[] = new int[2];
+        //liste idAppli + Acteur avec un rate < = nbToken
         for (int i = 0; i < ParametreSdf.listApplicationSdf.size(); i++) {
             for (int j = 0; j < ParametreSdf.listApplicationSdf.get(i).getListActor().size(); j++) {
                 a = true;
@@ -37,6 +36,9 @@ public class PlacementInitSdf {
                 }
             }
         }
+        //for(Integer[] i : ParametreSdf.listactAttente)
+            //System.out.println(i[0]+" "+i[1]);
+        
         for (int i = 0; i < Math.min(ParametreSdf.listApplicationSdf.size(), StaticParametre.nbcluster); i++) {
             for (int j = 0; j < ParametreSdf.listactAttente.size(); j++) {
                 if (i == ParametreSdf.listactAttente.get(j)[0]) {
@@ -46,10 +48,10 @@ public class PlacementInitSdf {
                         b = Strategie_Mapping_SDF2.FF(i, i, ParametreSdf.listactAttente.get(j)[1]);
                     } else if (ParametreSdf.ALGORITHME_PLACEMENT == "BN_MANHATAN") {
                         b = Strategie_Mapping_SDF3.Init(i, i, ParametreSdf.listactAttente.get(j)[1]);
-                        System.out.println("init " + b[0] + " y " + b[1]);
+                        //System.out.println("init " + b[0] + " y " + b[1]);
                     } else if (ParametreSdf.ALGORITHME_PLACEMENT == "NN_GBHD") {
                         b = Strategie_Mapping_SDF4.Init(i, i, ParametreSdf.listactAttente.get(j)[1]);
-                        System.out.println("*******placement init ");
+                        //System.out.println("*******placement init ");
                     } else if (ParametreSdf.ALGORITHME_PLACEMENT == "BN_GBHD") {
                         b = Strategie_Mapping_SDF5.Init(i, i, ParametreSdf.listactAttente.get(j)[1]);
                     }
@@ -62,11 +64,9 @@ public class PlacementInitSdf {
                         ParametreSdf.listApplicationSdf.get(i).getListActor().get(ParametreSdf.listactAttente.get(j)[1]).y = b[1];
                         ParametreSdf.listApplicationSdf.get(i).getListActor().get(ParametreSdf.listactAttente.get(j)[1]).etat = 3;
                         ParametreSdf.listApplicationSdf.get(i).getListActor().get(ParametreSdf.listactAttente.get(j)[1]).debut_execution = ParametreSdf.Tnow;
-                        Actor tache = new Actor();
-                        tache = ParametreSdf.listApplicationSdf.get(i).getListActor().get(ParametreSdf.listactAttente.get(j)[1]);
+                        Actor tache = tache = ParametreSdf.listApplicationSdf.get(i).getListActor().get(ParametreSdf.listactAttente.get(j)[1]);
                         Create_NOC.getNOC()[tache.x][tache.y].set_state(false);
                         Create_NOC.getNOC()[tache.x][tache.y].ajoutActor(tache);
-                        ;
                         ParametreSdf.listactcours.add(ParametreSdf.listactAttente.get(j));
                         int x_source, y_source, x_destination, y_destination;
                         x_source = StaticParametre.LEGNHT_NOC / 2;
@@ -81,16 +81,18 @@ public class PlacementInitSdf {
                     }
                 }
             }
-        }
+        }  
+        //System.exit(0);
         int z = 0;
         while (z < ParametreSdf.listactAttente.size()) {
             if (ParametreSdf.listApplicationSdf.get(ParametreSdf.listactAttente.get(z)[0]).getListActor().get(ParametreSdf.listactAttente.get(z)[1]).etat == 3) {
                 ParametreSdf.listactAttente.remove(z);
                 z = 0;
             } else {
-                z += 1;
+                z ++;
             }
         }
+//        System.exit(0);
         new RoutageSdf();
         int type_pe, a2, b2;
         for (int j = 0; j < ParametreSdf.listactcours.size(); j++) {
@@ -99,7 +101,7 @@ public class PlacementInitSdf {
             type_pe = Create_NOC.getNOC()[a2][b2].getType();
             for (int s = 0; s < ParametreSdf.listApplicationSdf.get(ParametreSdf.listactcours.get(j)[0]).getListActor().get(ParametreSdf.listactcours.get(j)[1]).Processors.size(); s++) {
                 if (type_pe == ParametreSdf.listApplicationSdf.get(ParametreSdf.listactcours.get(j)[0]).getListActor().get(ParametreSdf.listactcours.get(j)[1]).Processors.get(s).id_type) {
-                    ParametreSdf.listApplicationSdf.get(ParametreSdf.listactcours.get(j)[0]).getListActor().get(ParametreSdf.listactcours.get(j)[1]).fin_execution = ParametreSdf.Tnow + ParametreSdf.listApplicationSdf.get(ParametreSdf.listactcours.get(j)[0]).getListActor().get(ParametreSdf.listactcours.get(j)[1]).Processors.get(s).time;
+                    //ParametreSdf.listApplicationSdf.get(ParametreSdf.listactcours.get(j)[0]).getListActor().get(ParametreSdf.listactcours.get(j)[1]).fin_execution = ParametreSdf.Tnow + ParametreSdf.listApplicationSdf.get(ParametreSdf.listactcours.get(j)[0]).getListActor().get(ParametreSdf.listactcours.get(j)[1]).Processors.get(s).time;
                 }
             }
             ParametreSdf.T_next_event.add(ParametreSdf.listApplicationSdf.get(ParametreSdf.listactcours.get(j)[0]).getListActor().get(ParametreSdf.listactcours.get(j)[1]).fin_execution);

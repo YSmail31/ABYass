@@ -14,15 +14,33 @@ import Architecture.ProcessorElement;
 public class StaticParametre {
 
     private static int[][] Matrice_channel = new int[256][256];
+
+    ;
+
     public static Map<Integer, ProcessorElement> listProcesseur = new TreeMap<Integer, ProcessorElement>();
+
+    ;
+
     public static LinkedList<Application> listApplication = new LinkedList<Application>();
+
+    ;
+
     public static LinkedList<Application> applicationAttente = new LinkedList<Application>();
+
     public static Application[] application_en_cours = new Application[9];
+
     public static Cluster[] listClusters = new Cluster[16];
+
+    ;
+
     public static String MONO_MULTI = "MONO";
+
     public static String ALGORITHME_PLACEMENT;
+
     public static String ALGORITHME_ROUTAGE = "XY";
+
     public static String Strategie_De_Recherche;
+
     public static int LEGNHT_NOC = 16;
 
     public static final int LEGNHT_CHANNEL = 112;

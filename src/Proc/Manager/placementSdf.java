@@ -15,7 +15,7 @@ import Simulation.StaticParametre;
 
 public class placementSdf {
 
-    public static void star()  {
+    public static void star() throws InterruptedException {
         int xpe, ype, idlien, rat;
         for (int j = 0; j < ParametreSdf.listactcours.size(); j++) {
             if (ParametreSdf.listApplicationSdf.get(ParametreSdf.listactcours.get(j)[0]).getListActor().get(ParametreSdf.listactcours.get(j)[1]).fin_execution == ParametreSdf.Tnow) {
@@ -87,7 +87,7 @@ public class placementSdf {
                     b = Strategie_Mapping_SDF3.Dynamique(ParametreSdf.listApplicationSdf.get(ParametreSdf.listactAttente.get(j)[0]).getIdCluster(), ParametreSdf.listactAttente.get(j)[0], ParametreSdf.listactAttente.get(j)[1]);
                 } else if (ParametreSdf.ALGORITHME_PLACEMENT == "NN_GBHD") {
                     b = Strategie_Mapping_SDF4.Dynamique(ParametreSdf.listApplicationSdf.get(ParametreSdf.listactAttente.get(j)[0]).getIdCluster(), ParametreSdf.listactAttente.get(j)[0], ParametreSdf.listactAttente.get(j)[1]);
-                    System.out.println("*******placement dyn sur x " + b[0] + " y " + b[1]);
+                    //System.out.println("*******placement dyn sur x " + b[0] + " y " + b[1]);
                 } else if (ParametreSdf.ALGORITHME_PLACEMENT == "BN_GBHD") {
                     b = Strategie_Mapping_SDF5.Dynamique(ParametreSdf.listApplicationSdf.get(ParametreSdf.listactAttente.get(j)[0]).getIdCluster(), ParametreSdf.listactAttente.get(j)[0], ParametreSdf.listactAttente.get(j)[1]);
                 }
@@ -100,6 +100,7 @@ public class placementSdf {
                     tache = ParametreSdf.listApplicationSdf.get(ParametreSdf.listactAttente.get(j)[0]).getListActor().get(ParametreSdf.listactAttente.get(j)[1]);
                     Create_NOC.getNOC()[tache.x][tache.y].set_state(false);
                     Create_NOC.getNOC()[tache.x][tache.y].ajoutActor(tache);
+                    ;
                     ParametreSdf.listactcours.add(ParametreSdf.listactAttente.get(j));
                     for (int s = 0; s < tache.Ports.size(); s++) {
                         if (tache.Ports.get(s).type.equals("in")) {
@@ -121,7 +122,7 @@ public class placementSdf {
                         }
                     }
                 } else {
-                    System.out.println("  *********** ******* *******impossible de mapper la tache " + ParametreSdf.listactAttente.get(j)[1]);
+                    //System.out.println("  *********** ******* *******impossible de mapper la tache " + ParametreSdf.listactAttente.get(j)[1]);
                 }
             }
             if (ParametreSdf.listApplicationSdf.get(ParametreSdf.listactAttente.get(j)[0]).etat == 1) {
@@ -140,11 +141,11 @@ public class placementSdf {
                     b = Strategie_Mapping_SDF3.Dynamique(idcl, ParametreSdf.listactAttente.get(j)[0], ParametreSdf.listactAttente.get(j)[1]);
                 } else if (ParametreSdf.ALGORITHME_PLACEMENT == "NN_GBHD") {
                     b = Strategie_Mapping_SDF4.Dynamique(idcl, ParametreSdf.listactAttente.get(j)[0], ParametreSdf.listactAttente.get(j)[1]);
-                    System.out.println("*******placement dyn ");
+                    //System.out.println("*******placement dyn ");
                 } else if (ParametreSdf.ALGORITHME_PLACEMENT == "BN_GBHD") {
                     b = Strategie_Mapping_SDF5.Dynamique(idcl, ParametreSdf.listactAttente.get(j)[0], ParametreSdf.listactAttente.get(j)[1]);
                 }
-                System.out.println("placement dyn app " + ParametreSdf.listactAttente.get(j)[0] + " tache " + ParametreSdf.listactAttente.get(j)[1]);
+                //System.out.println("placement dyn app " + ParametreSdf.listactAttente.get(j)[0] + " tache " + ParametreSdf.listactAttente.get(j)[1]);
                 if ((b[0] >= 0) && (b[1] >= 0)) {
                     if (idcl >= 0) {
                         ParametreSdf.listApplicationSdf.get(ParametreSdf.listactAttente.get(j)[0]).setIdCluster(idcl);
@@ -158,6 +159,7 @@ public class placementSdf {
                     tache = ParametreSdf.listApplicationSdf.get(ParametreSdf.listactAttente.get(j)[0]).getListActor().get(ParametreSdf.listactAttente.get(j)[1]);
                     Create_NOC.getNOC()[tache.x][tache.y].set_state(false);
                     Create_NOC.getNOC()[tache.x][tache.y].ajoutActor(tache);
+                    ;
                     ParametreSdf.listactcours.add(ParametreSdf.listactAttente.get(j));
                     for (int s = 0; s < tache.Ports.size(); s++) {
                         if (tache.Ports.get(s).type.equals("in")) {
@@ -179,12 +181,13 @@ public class placementSdf {
                         }
                     }
                 } else {
-                    System.out.println("impossible de mapper la tache");
+                    //System.out.println("impossible de mapper la tache");
                 }
             }
         }
         int z = 0;
         LinkedList<Integer[]> listtemp = new LinkedList<Integer[]>();
+        ;
         while (z < ParametreSdf.listactAttente.size()) {
             if (ParametreSdf.listApplicationSdf.get(ParametreSdf.listactAttente.get(z)[0]).getListActor().get(ParametreSdf.listactAttente.get(z)[1]).etat == 3) {
                 listtemp.add(ParametreSdf.listactAttente.get(z));
@@ -202,7 +205,7 @@ public class placementSdf {
             type_pe = Create_NOC.getNOC()[a2][b2].getType();
             for (int s = 0; s < ParametreSdf.listApplicationSdf.get(listtemp.get(j)[0]).getListActor().get(listtemp.get(j)[1]).Processors.size(); s++) {
                 if (type_pe == ParametreSdf.listApplicationSdf.get(listtemp.get(j)[0]).getListActor().get(listtemp.get(j)[1]).Processors.get(s).id_type) {
-                    //ParametreSdf.listApplicationSdf.get(listtemp.get(j)[0]).getListActor().get(listtemp.get(j)[1]).fin_execution = ParametreSdf.Tnow + ParametreSdf.listApplicationSdf.get(listtemp.get(j)[0]).getListActor().get(listtemp.get(j)[1]).Processors.get(s).time;
+                    ParametreSdf.listApplicationSdf.get(listtemp.get(j)[0]).getListActor().get(listtemp.get(j)[1]).fin_execution = ParametreSdf.Tnow + ParametreSdf.listApplicationSdf.get(listtemp.get(j)[0]).getListActor().get(listtemp.get(j)[1]).Processors.get(s).time;
                 }
             }
             ParametreSdf.T_next_event.add(ParametreSdf.listApplicationSdf.get(listtemp.get(j)[0]).getListActor().get(listtemp.get(j)[1]).fin_execution);

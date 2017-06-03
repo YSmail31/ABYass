@@ -34,7 +34,7 @@ public class NN_MANHATAN_Circ_Haut {
 
 
 
-public  void lancer(Tache t,int x,int y) 
+public  void lancer(Tache t,int x,int y) throws InterruptedException
 {
 
 
@@ -69,7 +69,7 @@ StaticParametre.listApplication.get(t.getIdApplication()).setEnergie(this.Energi
 
 //////////////////////////////////////////////////////Spiral ////////////////////////////////////////////
 
-public   void start_MANHATAN(Tache tachePlacer,int x,int y)  
+public   void start_MANHATAN(Tache tachePlacer,int x,int y) throws InterruptedException 
 {
 this.x=x;
 this.y=y;
@@ -173,7 +173,7 @@ recherche_proc_libre(tachePlacer,this.x+i,this.y-(Saut-i)); // Recherche Bas Gau
  
 /////////////////////// 
  
-public void recherche_proc_libre(Tache tachePlacer,int x,int y) {
+public void recherche_proc_libre(Tache tachePlacer,int x,int y) throws InterruptedException{
 	
 	if(y>=0 && y<=7 && x>=0 && x<=7)
 	{

@@ -1,7 +1,5 @@
 package Proc.Manager;
 
-import Simulation.SimulatorSdf;
-import Simulation.StaticParametre;
 import Simulation.ParametreSdf;
 import Architecture.Create_NOC;
 import Routage_Algorithme.Paquet;

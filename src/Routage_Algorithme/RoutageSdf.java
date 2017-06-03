@@ -7,7 +7,7 @@ import Simulation.*;
 
 public class RoutageSdf {
 
-    static long rech(Paquet paq,int type) {
+    static int rech(Paquet paq,int type) {
         ApplicationSdf appli = ParametreSdf.listApplicationSdf.get(paq.idapp);
         int i=0;
         while(i<appli.getListActor().size() && paq.idact != appli.getListActor().get(i).id)
@@ -50,11 +50,11 @@ public class RoutageSdf {
                     }
                     return 0;
     }
-    public RoutageSdf()  {
+    public RoutageSdf() throws InterruptedException {
         routageinitsdf();
     }
 
-    public static void routageinitsdf() {
+    public static void routageinitsdf() throws InterruptedException {
         boolean routage = true, etat_lien = true;
         int x_suivant, y_suivant, id_lien;
         while (routage == true) {
@@ -63,11 +63,10 @@ public class RoutageSdf {
                     if (!Create_NOC.getNOC()[i][j].List_Paquet.isEmpty()) {
                         etat_lien = true;
                         while (etat_lien && !Create_NOC.getNOC()[i][j].List_Paquet.isEmpty()) {
-                            Paquet paq;
-                            paq = Create_NOC.getNOC()[i][j].List_Paquet.get(0);
+                            Paquet paq = Create_NOC.getNOC()[i][j].List_Paquet.get(0);
                             if (paq.x_destination == i) {
                                 if (paq.y_destination == j) {
-                                    long TempsExecution = rech(Create_NOC.getNOC()[i][j].List_Paquet.get(0),Create_NOC.getNOC()[i][j].getType());
+                                    int TempsExecution = rech(Create_NOC.getNOC()[i][j].List_Paquet.get(0),Create_NOC.getNOC()[i][j].getType());
                                     ParametreSdf.listApplicationSdf.get(paq.idapp).setEnergie(TempsExecution*StaticParametre.Energie_attente_envoie);
                                     Create_NOC.getNOC()[i][j].List_Paquet.remove(0);
                                 } else if (paq.y_destination < j) {
@@ -92,9 +91,11 @@ public class RoutageSdf {
                                     y_suivant = j + 1;
                                     id_lien = Recherche_Lien(i, j, x_suivant, y_suivant);
                                     if ((ParametreSdf.Debit - GenererChannel.getListChannel().get(id_lien).charge) >= ParametreSdf.Default_Paquets_Size) {
+                                        //on ajoute le paquet a la liste d'attente du  prochain lien
                                         paq.x_inter = x_suivant;
                                         paq.y_inter = y_suivant;
                                         GenererChannel.getListChannel().get(id_lien).liste_paquets.add(paq);
+                                        //on supprime le paquet du noc actuel et on calcul l'energie consommé et la charge du canal actuel
                                         Create_NOC.getNOC()[i][j].List_Paquet.remove(0);
                                         Create_NOC.getNOC()[i][j].Energie_routage += StaticParametre.Energie_envoi;
                                         ParametreSdf.listApplicationSdf.get(paq.idapp).setEnergie(StaticParametre.Energie_envoi);
@@ -110,14 +111,17 @@ public class RoutageSdf {
                                 y_suivant = j;
                                 id_lien = Recherche_Lien(i, j, x_suivant, y_suivant);
                                 if ((ParametreSdf.Debit - GenererChannel.getListChannel().get(id_lien).charge) >= ParametreSdf.Default_Paquets_Size) {
+                                    //on ajoute le paquet a la liste d'attente du  prochain lien
                                     paq.x_inter = x_suivant;
                                     paq.y_inter = y_suivant;
                                     GenererChannel.getListChannel().get(id_lien).liste_paquets.add(paq);
+                                    //on supprime le paquet du noc actuel et on calcul l'energie consommé et la charge du canal actuel
                                     Create_NOC.getNOC()[i][j].List_Paquet.remove(0);
                                     Create_NOC.getNOC()[i][j].Energie_routage += StaticParametre.Energie_envoi;
                                     ParametreSdf.listApplicationSdf.get(paq.idapp).setEnergie(StaticParametre.Energie_envoi);
                                     GenererChannel.getListChannel().get(id_lien).charge -= ParametreSdf.Default_Paquets_Size;
                                 } else {
+                                    
                                     etat_lien = false;
                                     Create_NOC.getNOC()[i][j].Energie_routage += StaticParametre.Energie_attente_envoie;
                                     ParametreSdf.listApplicationSdf.get(paq.idapp).setEnergie(StaticParametre.Energie_attente_envoie);
@@ -125,6 +129,7 @@ public class RoutageSdf {
                             } else if (paq.x_destination > i) {
                                 x_suivant = i + 1;
                                 y_suivant = j;
+                                //retourne IDCanal du canal correspendant 
                                 id_lien = Recherche_Lien(i, j, x_suivant, y_suivant);
                                 if ((ParametreSdf.Debit - GenererChannel.getListChannel().get(id_lien).charge) >= ParametreSdf.Default_Paquets_Size) {
                                     paq.x_inter = x_suivant;
@@ -144,6 +149,7 @@ public class RoutageSdf {
                     }
                 }
             }
+            
             for (int i = 1; i < GenererChannel.getListChannel().size() + 1; i++) {
                 while (!GenererChannel.getListChannel().get(i).liste_paquets.isEmpty()) {
                     Paquet paq1 = GenererChannel.getListChannel().get(i).liste_paquets.get(0);
@@ -189,7 +195,7 @@ public class RoutageSdf {
                         if (enroutage == false) {
                             ParametreSdf.listApplicationSdf.get(i).getListActor().get(j).etat = 4;
                             Create_NOC.getNOC()[ParametreSdf.listApplicationSdf.get(i).getListActor().get(j).x][ParametreSdf.listApplicationSdf.get(i).getListActor().get(j).y].set_state(true);
-                            //ParametreSdf.listApplicationSdf.get(i).getListActor().get(j).fin_execution = ParametreSdf.Tnow;
+                            ParametreSdf.listApplicationSdf.get(i).getListActor().get(j).fin_execution = ParametreSdf.Tnow;
                         }
                     }
                 }
@@ -205,7 +211,7 @@ public class RoutageSdf {
         for (int i = 1; i <= GenererChannel.getListChannel().size(); i++) {
             if ((GenererChannel.getListChannel().get(i).getSource() == source && GenererChannel.getListChannel().get(i).getVoisin() == destination) || GenererChannel.getListChannel().get(i).getSource() == destination && GenererChannel.getListChannel().get(i).getVoisin() == source) {
                 id = GenererChannel.getListChannel().get(i).getIdLien();
-                break;
+                return i;
             }
         }
         return id;

@@ -4,14 +4,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
-import javax.swing.JOptionPane;
 import Simulation.StaticParametre;
+import java.util.TreeMap;
 
 public class Create_NOC {
 
     private static ProcessorElement[][] NOC;
 
     public static void creationNoc() throws IOException {
+        StaticParametre.listProcesseur = new TreeMap<Integer, ProcessorElement>();
         NOC = new ProcessorElement[StaticParametre.LEGNHT_NOC][StaticParametre.LEGNHT_NOC];
         BufferedReader in = new BufferedReader(new FileReader("lien.txt"));
         int compteurLigne = 0;

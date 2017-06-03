@@ -54,7 +54,7 @@ public class MORA_Routage {
         }
     }
 
-    public void start()  {
+    public void start() throws InterruptedException {
         if (x_source < x_destination) {
             haut_vers_bas();
         } else {
@@ -101,7 +101,7 @@ public class MORA_Routage {
             GenererChannel.getListChannel().get(1).ajout_file(Create_NOC.getNOC()[x][y].getId(), Create_NOC.getNOC()[x1][y1].getId(), donnee);
     }
 
-    public void attendre(int x, int y, int x1, int y1)  {
+    public void attendre(int x, int y, int x1, int y1) throws InterruptedException {
         int size_file = get_lien(x, y, x1, y1);
         this.temps_attente = (((size_file - donnee) / StaticParametre.DEBIT) * StaticParametre.Temps_envoie);
         if (succ != -2) {
@@ -115,7 +115,7 @@ public class MORA_Routage {
         StaticParametre.listApplication.get(tache.getIdApplication()).setEnergie(this.Energie_attente);
     }
 
-    public void lancer_envoie(int x, int y, int x1, int y1, int M)  {
+    public void lancer_envoie(int x, int y, int x1, int y1, int M) throws InterruptedException {
         int c = 0;
         for (int i = 1; i <= (donnee / StaticParametre.DEBIT); i++) {
             if (x >= 0 && x <= 7 && y >= 0 && y <= 7 && x1 >= 0 && x1 <= 7 && y1 >= 0 && y1 <= 7) {
@@ -140,7 +140,7 @@ public class MORA_Routage {
         StaticParametre.listApplication.get(tache.getIdApplication()).setEnergie(this.Energie_routage);
     }
 
-    public void haut_vers_bas()  {
+    public void haut_vers_bas() throws InterruptedException {
         if (y_source < y_destination) {
             if (get_lien(x_source, y_source, x_source, y_source + 1) < get_lien(x_source, y_source, x_source + 1, y_source)) {
                 if (get_lien(x_source, y_source, x_source, y_source + 1) > 0) {
@@ -205,7 +205,7 @@ public class MORA_Routage {
         }
     }
 
-    public void bas_vers_haut()  {
+    public void bas_vers_haut() throws InterruptedException {
         if (y_source < y_destination) {
             if (get_lien(x_source, y_source, x_source, y_source + 1) < get_lien(x_source - 1, y_source, x_source, y_source)) {
                 if (get_lien(x_source, y_source, x_source, y_source + 1) > 0) {

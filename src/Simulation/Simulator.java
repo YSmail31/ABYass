@@ -1,7 +1,6 @@
 package Simulation;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -74,7 +73,7 @@ public class Simulator{
 	
 		{
 			// Affichage du temps actuel
-			System.out.println("Tnow   =  "+Tnow);
+			//System.out.println("Tnow   =  "+Tnow);
 			
 			// Le parcours des taches qui demandes a etre execut�s
 			MAITRE.Mapping(Tnow);
@@ -106,7 +105,7 @@ public class Simulator{
 		 				{
 		 				int x=StaticParametre.getListApplication().get(j).getListTache().get(r).x;
 		 				int y=StaticParametre.getListApplication().get(j).getListTache().get(r).y;
-		 				System.out.println("x   "+x+"  y  "+y+"  fin execution  "+StaticParametre.getListApplication().get(j).getListTache().get(r).fin_execution+ "   Debut execution    "+StaticParametre.getListApplication().get(j).getListTache().get(r).debut_execution+"  id tache  "+r+ " id application  "+j  );
+		 				//System.out.println("x   "+x+"  y  "+y+"  fin execution  "+StaticParametre.getListApplication().get(j).getListTache().get(r).fin_execution+ "   Debut execution    "+StaticParametre.getListApplication().get(j).getListTache().get(r).debut_execution+"  id tache  "+r+ " id application  "+j  );
 		 					
 		 					
 		 			}
@@ -116,15 +115,15 @@ public class Simulator{
 			
 			for(int r=0;r<8;r++)
 			{
-				for(int j=0;j<8;j++)
+				//for(int j=0;j<8;j++)
 				
-					System.out.println("etat du proc "+Create_NOC.getNOC()[r][j].getFree()+"   son type  "+Create_NOC.getNOC()[r][j].getType()+"  x   "+r+"    y   "+j+" File memoire   "+Create_NOC.getNOC()[r][j].getMem());
+					//System.out.println("etat du proc "+Create_NOC.getNOC()[r][j].getFree()+"   son type  "+Create_NOC.getNOC()[r][j].getType()+"  x   "+r+"    y   "+j+" File memoire   "+Create_NOC.getNOC()[r][j].getMem());
 					
 			}
 			
 /***************************************** fin affichage  *************************/
 
-	System.out.println("fin   "+Tnow+"  "+Energy+"    temps recherche "+temps_recherche);
+	//System.out.println("fin   "+Tnow+"  "+Energy+"    temps recherche "+temps_recherche);
 			OutputFileReader.generateOutputFile(Tnow, Energy,fw);
 
 		
@@ -212,8 +211,8 @@ public static void set_temps_recherche(int time)
 			{
 		    
 			StaticParametre.Strategie_De_Recherche =StaticParametre.List_Strategie.get(b);
-			System.out.println("Algo    =  "+StaticParametre.ALGORITHME_PLACEMENT+"   Strategie "+StaticParametre.List_Strategie.get(b));
-			System.out.println("fin   "+Tnow+"  "+Energy+"    ");
+			//System.out.println("Algo    =  "+StaticParametre.ALGORITHME_PLACEMENT+"   Strategie "+StaticParametre.List_Strategie.get(b));
+			//System.out.println("fin   "+Tnow+"  "+Energy+"    ");
 			
 			Simulator sim = new Simulator();
 			sim.start(fw);

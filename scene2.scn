@@ -1,11 +1,11 @@
 Temps Envoi Paquet :	15
 Energie Envoi Paquet :	20
-Nombre Application :	10
-Energie Proc Type 0 :	40
-Frequence Proc Type 0 :	20
-Energie Proc Type 1 :	30
-Frequence Proc Type 1 :	15
-Energie Proc Type 2 :	20
-Frequence Proc Type 2 :	10
-Energie Proc Type 3 :	18
-Frequence Proc Type 3 :	20
+Nombre Application :	4
+Energie Proc Type 0 :	10
+Frequence Proc Type 0 :	50
+Energie Proc Type 1 :	60
+Frequence Proc Type 1 :	120
+Energie Proc Type 2 :	80
+Frequence Proc Type 2 :	130
+Energie Proc Type 3 :	60
+Frequence Proc Type 3 :	200

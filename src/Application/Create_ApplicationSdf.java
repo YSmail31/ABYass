@@ -16,7 +16,7 @@ public class Create_ApplicationSdf {
     public static void remplirTaches(String lienFichier, Integer m) {
         SAXBuilder sax = new SAXBuilder();
         try {
-            document = sax.build(new File("" + lienFichier));
+            document = sax.build(new File(lienFichier));
             Element racine = document.getRootElement();
             List element = racine.getChildren("applicationGraph");
             Element BaliseAppGrpah = (Element) element.get(0);
@@ -69,7 +69,7 @@ public class Create_ApplicationSdf {
                     }
                     String t;
                     t = baliseproc.getChild("executionTime").getAttributeValue("time");
-                    if (t != null) {                        
+                    if (t != null) {
                         a.addproc(j, baliseproc.getAttributeValue("type"), Integer.parseInt(t), memory, id_type);
                     } else {
                         t = baliseproc.getChild("executionTime").getText();
@@ -78,6 +78,7 @@ public class Create_ApplicationSdf {
                 }
                 appliSdf.AddActor(a);
             }
+            
             for (int i = 0; i < baliseChannels.size(); i++) {
                 Channel c = new Channel();
                 c.idApplication = m;

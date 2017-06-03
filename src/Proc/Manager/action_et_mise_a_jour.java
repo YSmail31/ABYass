@@ -13,7 +13,7 @@ public class action_et_mise_a_jour {
 
     Tache tache_fils, tache_pere, tache_fils1;
 
-    public action_et_mise_a_jour(int Tnow)  {
+    public action_et_mise_a_jour(int Tnow) throws InterruptedException {
         for (int j = 0; j < StaticParametre.getListApplication().size(); j++) {
             for (int i = 0; i < StaticParametre.getListApplication().get(j).getListTache().size(); i++) {
                 tache_pere = StaticParametre.getListApplication().get(j).getListTache().get(i);
@@ -44,12 +44,12 @@ public class action_et_mise_a_jour {
                     if (tache_pere.getId() == 0) {
                         StaticParametre.setEnd_Application();
                         Simulator.setEnergy(StaticParametre.listApplication.get(tache_pere.getIdApplication()).getEnergie());
-                        System.out.println("Clusterrr " + StaticParametre.getListApplication().get(tache_pere.getIdApplication()).getIdCluster() + "  size des apps   " + StaticParametre.getListApplication().size() + "   size des clust  " + StaticParametre.listClusters.length);
+                        //System.out.println("Clusterrr " + StaticParametre.getListApplication().get(tache_pere.getIdApplication()).getIdCluster() + "  size des apps   " + StaticParametre.getListApplication().size() + "   size des clust  " + StaticParametre.listClusters.length);
                         placement.launch_new_application(StaticParametre.getListApplication().get(tache_pere.getIdApplication()).getIdCluster());
                     }
                     if (i != 0)
                         new Methode_Routage(tache_pere, StaticParametre.getListApplication().get(j).getListTache().get(tache_pere.getIdPere()).x, StaticParametre.getListApplication().get(j).getListTache().get(tache_pere.getIdPere()).y, -2);
-                    System.out.println("end  de la tache  " + i + " id app  " + j + "    !!!!!!!!!!!!!!!!!!!!!!!!!     Tnow   " + Tnow + "                  fin execution    " + tache_pere.fin_execution);
+                    //System.out.println("end  de la tache  " + i + " id app  " + j + "    !!!!!!!!!!!!!!!!!!!!!!!!!     Tnow   " + Tnow + "                  fin execution    " + tache_pere.fin_execution);
                     if (!StaticParametre.not_mapped.isEmpty()) {
                         for (int k = 0; k < StaticParametre.not_mapped.size(); k++) {
                             int r;
@@ -109,7 +109,7 @@ public class action_et_mise_a_jour {
         }
     }
 
-    public void Launch(Tache t)  {
+    public void Launch(Tache t) throws InterruptedException {
         ProcessorElement processeur = Create_NOC.getNOC()[t.x][t.y];
         processeur.ajoutTache(t);
         Simulator.Add_Event(t.fin_execution);

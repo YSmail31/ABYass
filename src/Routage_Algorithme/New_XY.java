@@ -52,7 +52,7 @@ public class New_XY {
         donnee = taille;
     }
 
-    public void start()  {
+    public void start() throws InterruptedException {
         int saut_x = Math.abs(this.x_source - this.x_destination);
         if (saut_x > 0) {
             if ((this.x_source - this.x_destination) < 0) {
@@ -118,7 +118,7 @@ public class New_XY {
             GenererChannel.getListChannel().get(1).ajout_file(Create_NOC.getNOC()[x][y].getId(), Create_NOC.getNOC()[x1][y1].getId(), donnee);
     }
 
-    public void attendre(int x, int y, int x1, int y1)  {
+    public void attendre(int x, int y, int x1, int y1) throws InterruptedException {
         int size_file = verifier_lien(x, y, x1, y1);
         this.temps_attente = (((size_file - donnee) / StaticParametre.DEBIT) * StaticParametre.Temps_envoie);
         Simulator.Add_Event(Simulator.Tnow + temps_attente);
@@ -126,7 +126,7 @@ public class New_XY {
         StaticParametre.listApplication.get(t.getIdApplication()).setEnergie(this.Energie_attente);
     }
 
-    public void lancer_envoie(int x, int y, int x1, int y1, int M)  {
+    public void lancer_envoie(int x, int y, int x1, int y1, int M) throws InterruptedException {
         this.temps_routage = (StaticParametre.Temps_envoie * (donnee / StaticParametre.DEBIT));
         p.set_Tfin(temps_routage + temps_attente);
         this.Energie_routage = (StaticParametre.Energie_envoi * (donnee / StaticParametre.DEBIT));

@@ -96,7 +96,7 @@ public class ProcessorElement {
         this.idCluster = idCluster;
     }
 
-    public void ajoutTache(Tache tache)  {
+    public void ajoutTache(Tache tache) throws InterruptedException {
         switch(this.type) {
             case 0:
                 {
@@ -130,11 +130,10 @@ public class ProcessorElement {
                 break;
         }
         Strategy_Switching(tache);
-        
         StaticParametre.listApplication.get(tache.getIdApplication()).setEnergie(this.Energie);
     }
 
-    public void ajoutActor(Actor tache)  {
+    public void ajoutActor(Actor tache) throws InterruptedException {
         switch(this.type) {
             case 0:
                 {
@@ -167,15 +166,14 @@ public class ProcessorElement {
                 t = tache.Processors.get(i).time;
             }
         }
-        //System.out.println(this.Frequence + " ++++ " + this.Energie +" ++++ "+ t );
-        ParametreSdf.listApplicationSdf.get(tache.idApplication).setEnergie(this.Frequence * this.Energie * t );
-        this.Energie_consome += this.Frequence * this.Energie * t ;
+        ParametreSdf.listApplicationSdf.get(tache.idApplication).setEnergie(this.Frequence * this.Energie * t * 1000);
+        this.Energie_consome += this.Frequence * this.Energie * t * 1000;
     }
 
     private void Strategy_Switching(Tache tache) {
         int fin_exec = Simulator.Tnow;
         if (tache.getId() == 1 && tache.getIdApplication() == 1)
-            System.out.println("tyyype " + type + "  taille  " + tache.getTailleTache(type));
+            //System.out.println("tyyype " + type + "  taille  " + tache.getTailleTache(type));
         if (!tache.getSucc().isEmpty()) {
             tache.fin_execution = ((tache.getTailleTache(type) * Frequence) / 2) + fin_exec;
             Energie = (tache.getTailleTache(type) * Energie) / 2;

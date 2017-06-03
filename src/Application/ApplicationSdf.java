@@ -1,7 +1,6 @@
 package Application;
 
 import java.util.LinkedList;
-import Simulation.ParametreSdf;
 
 public class ApplicationSdf {
 
@@ -11,7 +10,7 @@ public class ApplicationSdf {
 
     private int cluster = -1;
 
-    private long energie;
+    private int energie;
 
     private int id_application;
 
@@ -52,11 +51,11 @@ public class ApplicationSdf {
         return cluster;
     }
 
-    public long getEnergie() {
+    public int getEnergie() {
         return this.energie;
     }
 
-    public void setEnergie(long energie) {
+    public void setEnergie(int energie) {
         this.energie += energie;
     }
 
@@ -69,11 +68,10 @@ public class ApplicationSdf {
     }
 
     public void initialiser_app(Integer idchan) {
-        Channel chan = new Channel();
-        chan = this.getListChannel().get(idchan);
+        //Recuperer actor et port (src/dst) avec le hashmap
+        Channel chan = this.getListChannel().get(idchan);
         for (int i = 0; i < this.getListActor().size(); i++) {
-            Actor act = new Actor();
-            act = this.getListActor().get(i);
+            Actor act = this.getListActor().get(i);
             if (chan.srcActor.equals(act.nom)) {
                 this.getListChannel().get(idchan).idsrcActor = act.id;
                 for (int j = 0; j < act.Ports.size(); j++) {

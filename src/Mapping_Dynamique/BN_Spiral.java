@@ -28,7 +28,7 @@ public class BN_Spiral {
 	}
 
 	/////////////////////////////////////////////////////////////////
-public void start(Tache tachePlacer,int x,int y) 
+public void start(Tache tachePlacer,int x,int y) throws InterruptedException
 	{
 	this.x=x;
 	this.y=y;
@@ -117,7 +117,7 @@ while(place==false)
           						if(place==false && i==7) {
     								int c=0;
     								place=true;
-    								//System.out.println(" grrr Tachhhhhhhhhhhe   "+tachePlacer.getId()+"   application    "+tachePlacer.getIdApplication());
+    								////System.out.println(" grrr Tachhhhhhhhhhhe   "+tachePlacer.getId()+"   application    "+tachePlacer.getIdApplication());
     								if(StaticParametre.not_mapped.isEmpty())
     								StaticParametre.not_mapped.add(tachePlacer);
     								else
@@ -143,7 +143,7 @@ while(place==false)
 
 /////////////////////// 
 
-public  void recherche_gauche(Tache tachePlacer,int x,int y) {
+public  void recherche_gauche(Tache tachePlacer,int x,int y) throws InterruptedException{
 
 
 if(y-1>=0 && y<=7 && x>=0 && x<=7)
@@ -171,7 +171,7 @@ if(y-1>=0 && y<=7 && x>=0 && x<=7)
 /////////////////////////////////////	
 
 	//////////////////////////verifier le proceseur haut_gauche
-public  void recherche_haut_gauche(Tache tachePlacer,int x,int y) {
+public  void recherche_haut_gauche(Tache tachePlacer,int x,int y) throws InterruptedException{
 
 	if (y-1>=0 && x-1>=0 && y<=7 && x<=7)
 	{
@@ -203,7 +203,7 @@ public  void recherche_haut_gauche(Tache tachePlacer,int x,int y) {
 //////////////////////////
 
 
-public  void recherche_haut(Tache tachePlacer,int x,int y) 
+public  void recherche_haut(Tache tachePlacer,int x,int y) throws InterruptedException
 {
 	
 	
@@ -241,7 +241,7 @@ public  void recherche_haut(Tache tachePlacer,int x,int y)
 ///////////////////////////// rechercher le processeur haut_droite 
 
 
-public  void recherche_haut_droite(Tache tachePlacer,int x,int y) {
+public  void recherche_haut_droite(Tache tachePlacer,int x,int y) throws InterruptedException{
 
 
 if (x-1>=0 && y+1<=7 && x<=7 && y>=0)
@@ -271,7 +271,7 @@ if (x-1>=0 && y+1<=7 && x<=7 && y>=0)
 //////////////////////////////////
    	
    
-public  void recherche_droite(Tache tachePlacer,int x,int y) {
+public  void recherche_droite(Tache tachePlacer,int x,int y) throws InterruptedException{
 	
 	
 		
@@ -301,7 +301,7 @@ public  void recherche_droite(Tache tachePlacer,int x,int y) {
 
 ////////////////////////////////////recherche processeur bas_droite 
 
-public  void recherche_bas_droite(Tache tachePlacer,int x,int y) {
+public  void recherche_bas_droite(Tache tachePlacer,int x,int y) throws InterruptedException{
 
 
 
@@ -335,7 +335,7 @@ public  void recherche_bas_droite(Tache tachePlacer,int x,int y) {
 
 
 ///////// verifier le processeur bas 
-public  void recherche_bas(Tache tachePlacer,int x,int y) {
+public  void recherche_bas(Tache tachePlacer,int x,int y) throws InterruptedException{
 	
 	
 	if(x+1<=7 && x>=0 && y>=0 && y<=7)
@@ -367,7 +367,7 @@ public  void recherche_bas(Tache tachePlacer,int x,int y) {
 
 //////////////////////////////rechercher le processeur bas_gauche 
 
-public  void recherche_bas_gauche(Tache tachePlacer,int x,int y) {
+public  void recherche_bas_gauche(Tache tachePlacer,int x,int y) throws InterruptedException{
 
 
 	if (x+1<=7 && y-1>=0 && x>=0 && y<=7)
@@ -402,7 +402,7 @@ public  void recherche_bas_gauche(Tache tachePlacer,int x,int y) {
 
 
 
-public  void refaire(Tache tachePlacer,int x,int y) 
+public  void refaire(Tache tachePlacer,int x,int y) throws InterruptedException
 {
 	
 	// recherche � gauche 
@@ -445,7 +445,7 @@ public  void refaire(Tache tachePlacer,int x,int y)
 }
 //////////////////////////
 /*
-public  void lancer(Tache tachePlacer,int K,int x,int y) 
+public  void lancer(Tache tachePlacer,int K,int x,int y) throws InterruptedException
 {
 	int x1=-1,y1=-1;
 	
@@ -495,7 +495,7 @@ public  void lancer(Tache tachePlacer,int K,int x,int y)
 */
 ////////////////////////////////////////
 
-public  void lancer(Tache t,int K,int x,int y) 
+public  void lancer(Tache t,int K,int x,int y) throws InterruptedException
 {
 
 int x1=-1,y1=-1;

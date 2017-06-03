@@ -31,7 +31,7 @@ public class Create_Application {
 	private static Document document;
 	
 
-	public static void remplirTaches(String lienFichier) throws IOException{
+	public static void remplirTaches(String lienFichier){
 		
 		/**
 		 *  Creation d'une list d'application
@@ -84,7 +84,7 @@ public class Create_Application {
 							Element g=(Element)list_taille_par_type.get(j);
 						// type
 						a.setType((g.getAttributeValue("Type")));
-						System.out.println("taille" +g.getAttributeValue("Taille") );
+						////System.out.println("taille" +g.getAttributeValue("Taille") );
 						//taille de la Tache selon le type
 						a.setTailleTache((g.getAttributeValue("Type")),(g.getAttributeValue("Taille")));
 						}
@@ -136,11 +136,12 @@ public class Create_Application {
 				StaticParametre.Lien_Fichier_XML=lienFichier;
 			}
 			
-		}catch (JDOMException e) {
+		} catch (JDOMException e) {
 			//JOptionPane.showMessageDialog(, "erreur dans le fichier XML");
+		} catch (IOException e) {
+			//JOptionPane.showMessageDialog(main.gui, "erreur dans le fichier XML");
+
 		}
-            //JOptionPane.showMessageDialog(main.gui, "erreur dans le fichier XML");
-            
 	}
 
 
